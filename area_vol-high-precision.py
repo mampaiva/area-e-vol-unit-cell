@@ -11,14 +11,22 @@ with open('input.dat', 'r') as file:
     a = Decimal(values[0])
     b = Decimal(values[1])
     c = Decimal(values[2])
-    cos_alpha = Decimal(values[3])
-    cos_beta = Decimal(values[4])
-    cos_gamma = Decimal(values[5])
+    alpha = Decimal(values[3])  # Ângulo em graus
+    beta = Decimal(values[4])   # Ângulo em graus
+    gamma = Decimal(values[5])  # Ângulo em graus
 
-# Calcular os senos dos ângulos
-sin_alpha = (Decimal(1) - cos_alpha**2).sqrt()
-sin_beta = (Decimal(1) - cos_beta**2).sqrt()
-sin_gamma = (Decimal(1) - cos_gamma**2).sqrt()
+# Converter ângulos para radianos
+alpha_rad = alpha * Decimal(math.pi) / Decimal(180)
+beta_rad = beta * Decimal(math.pi) / Decimal(180)
+gamma_rad = gamma * Decimal(math.pi) / Decimal(180)
+
+# Calcular os cossenos e senos dos ângulos
+cos_alpha = Decimal(math.cos(float(alpha_rad)))
+cos_beta = Decimal(math.cos(float(beta_rad)))
+cos_gamma = Decimal(math.cos(float(gamma_rad)))
+sin_alpha = Decimal(math.sin(float(alpha_rad)))
+sin_beta = Decimal(math.sin(float(beta_rad)))
+sin_gamma = Decimal(math.sin(float(gamma_rad)))
 
 # Calcular as áreas das faces
 area_ab = a * b * sin_gamma
@@ -36,4 +44,3 @@ with open('areas.txt', 'w') as file:
     file.write(f"Volume da célula unitária: {volume} Å³\n")
 
 print("Arquivo areas.txt criado com sucesso.")
-
